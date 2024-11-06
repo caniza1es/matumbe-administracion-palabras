@@ -39,3 +39,4 @@
    ```bash
    npm run dev
    ```
+[Video de uso](https://www.awesomescreenshot.com/video/33302300?key=a82caafcb12f3feb86c54cc5c555e929)
