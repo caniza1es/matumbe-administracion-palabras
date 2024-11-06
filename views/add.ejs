@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Matumbe</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&amp;display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+    <div class="header">
+        <div class="logo">Matumbe</div>
+        <div class="nav">
+            <a href="/translate">Traductor</a>
+            <b><a href="/add">Agregar palabras</a></b>
+            <a href="/speak">Pronunciación</a>
+        </div>
+        <div onclick="handleClick()" class="profile">DM</div>
+    </div>
+    <div class="container">
+        <div class="form-container">
+            <h2>¡Añade palabras nuevas!</h2>
+            <form action="/add" method="POST">
+                <label for="language">Idioma original:</label>
+                <select id="language" name="language">
+                    <option>Español</option>
+                </select>
+                <label for="word">Palabra</label>
+                <input id="word" name="word" type="text" required />
+                <label for="translation">Traducción (en Kamëntsá)</label>
+                <input id="translation" name="translation" type="text" required />
+                <label for="meaning">Significado</label>
+                <textarea id="meaning" name="meaning" required></textarea>
+                <button type="submit">Agregar</button>
+            </form>
+        </div>
+        <div class="stats-container">
+            <img alt="Image of a forest with a sunset" src="https://storage.googleapis.com/a1aa/image/pIqOrXyOyWImAZPvFZpsvErRwJPmEGfouuMEVhfuFzqOHMpTA.jpg" />
+            <div class="stats">
+                <div class="number"><%= totalWords %></div>
+                <div class="text">Palabras Agregadas</div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function handleClick() {
+            window.location.href = '/user';
+        }
+    </script>
+</body>
+</html>

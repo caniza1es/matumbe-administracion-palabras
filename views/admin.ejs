@@ -1,0 +1,70 @@
+<!-- views/admin.ejs -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Administración - Matumbe</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&amp;display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+    <div class="header">
+        <div class="logo">Matumbe</div>
+        <div class="nav">
+            <a href="/translate">Traductor</a>
+            <b><a href="/add">Agregar palabras</a></b>
+            <a href="/speak">Pronunciación</a>
+        </div>
+        <div onclick="handleClick()" class="profile">DM</div>
+    </div>
+    <div class="word-list">
+        <div class="word-section">
+            <h2>Palabras Pendientes de Aprobación</h2>
+            <% if (pendingWords.length > 0) { %>
+                <% pendingWords.forEach(function(word) { %>
+                    <div class="word-item">
+                        <div class="word-details">
+                            <p><strong>Idioma:</strong> <%= word.language %></p>
+                            <p><strong>Palabra:</strong> <%= word.word %></p>
+                            <p><strong>Traducción:</strong> <%= word.translation %></p>
+                            <p><strong>Significado:</strong> <%= word.meaning %></p>
+                        </div>
+                        <div class="word-actions">
+                            <form action="/admin/approve/<%= word._id %>" method="POST" style="display:inline;">
+                                <button class="approve-btn" type="submit">Aprobar</button>
+                            </form>
+                            <form action="/admin/delete/<%= word._id %>" method="POST" style="display:inline;">
+                                <button class="delete-btn" type="submit">Rechazar</button>
+                            </form>
+                        </div>
+                    </div>
+                <% }); %>
+            <% } else { %>
+                <p>No hay palabras pendientes.</p>
+            <% } %>
+        </div>
+        <div class="word-section">
+            <h2>Palabras Aprobadas</h2>
+            <% if (approvedWords.length > 0) { %>
+                <% approvedWords.forEach(function(word) { %>
+                    <div class="word-item">
+                        <div class="word-details">
+                            <p><strong>Idioma:</strong> <%= word.language %></p>
+                            <p><strong>Palabra:</strong> <%= word.word %></p>
+                            <p><strong>Traducción:</strong> <%= word.translation %></p>
+                            <p><strong>Significado:</strong> <%= word.meaning %></p>
+                        </div>
+                        <div class="word-actions">
+                            <a href="/admin/edit/<%= word._id %>" class="edit-btn">Editar</a>
+                            <form action="/admin/delete/<%= word._id %>" method="POST" style="display:inline;">
+                                <button class="delete-btn" type="submit">Eliminar</button>
+                            </form>
+                        </div>
+                    </div>
+                <% }); %>
+            <% } else { %>
+                <p>No hay palabras aprobadas.</p>
+            <% } %>
+        </div>
+    </div>
+</body>
+</html>
